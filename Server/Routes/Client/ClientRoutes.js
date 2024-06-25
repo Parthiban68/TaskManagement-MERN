@@ -2,7 +2,7 @@ const express = require('express')
 const route = express.Router()
 const { signup } = require('../../Controllers/Client/ClientController')
 
-route.get("/signup", signup)
+route.post("/signup", signup)
 
 route.get('/', (req, res) => {
     try {

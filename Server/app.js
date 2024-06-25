@@ -2,9 +2,10 @@ const express = require("express");
 const db = require('./Config/db')
 const client = require('./Routes/Client/ClientRoutes')
 require('dotenv').config()
+const bodyparser = require('body-parser')
 const app = express();
 
-
+app.use(bodyparser.json())
 db()
 
 //client route conneciton
