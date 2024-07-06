@@ -1,8 +1,9 @@
 const express = require('express')
 const route = express.Router()
-const { signup } = require('../../Controllers/Client/ClientController')
+const { signup, login } = require('../../Controllers/Client/ClientController')
 
 route.post("/signup", signup)
+route.post('/login', login)
 
 route.get('/', (req, res) => {
     try {

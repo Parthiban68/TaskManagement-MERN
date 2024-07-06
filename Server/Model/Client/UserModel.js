@@ -14,16 +14,6 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required:true
     },
-    activationcode:{
-        type: String,
-        required:true,
-        default:null
-    },
-    isactivated:{
-        type: Boolean,
-        required:true,
-        default: false
-    }
 })
 
 const UserModel = mongoose.model('users', UserSchema)

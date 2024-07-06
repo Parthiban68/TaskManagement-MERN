@@ -9,13 +9,19 @@ app.use(bodyparser.json())
 db()
 
 //client route conneciton
-app.use('/user',client)
+app.use('/user', client)
 
 
-app.get('/',(req,res)=>{
-    res.status(200).json({mesage:"home page"})
+app.get('/', (req, res) => {
+    res.status(200).json({ mesage: "home page" })
 })
 
-app.listen(process.env.port,()=>{
-    console.log(`server running on port ${process.env.port}`);
+
+app.listen(process.env.port, () => {
+    try {
+        console.log(`server running on port ${process.env.port}`);
+    } catch (err) {
+        console.log(err);
+    }
 })
+
