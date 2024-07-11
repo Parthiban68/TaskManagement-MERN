@@ -1,33 +1,24 @@
-import { useState } from 'preact/hooks'
-import preactLogo from './assets/preact.svg'
-import viteLogo from '/vite.svg'
-import './app.css'
 
-export function App() {
-  const [count, setCount] = useState(0)
+import { Route, Routes } from 'react-router-dom'
+import Signup from './Components/Signup/Signup'
+import Login from './Components/Login/Login'
+import Profile from './Components/Profile/Profile'
+import Home from './Components/Home/Home'
+import { AuthProvider } from './Context/AuthContext'
+
+function App() {
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} class="logo" alt="Vite logo" />
-        </a>
-        <a href="https://preactjs.com" target="_blank">
-          <img src={preactLogo} class="logo preact" alt="Preact logo" />
-        </a>
-      </div>
-      <h1>Vite + Preact</h1>
-      <div class="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/app.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p class="read-the-docs">
-        Click on the Vite and Preact logos to learn more
-      </p>
-    </>
+    <AuthProvider>
+      <Home />
+      <Routes>
+        <Route path='/signup' element={<Signup />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/profile' element={<Profile />} />
+      </Routes>
+    </AuthProvider>
+
   )
 }
+
+export default App

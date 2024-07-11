@@ -1,6 +1,6 @@
 const UserModel = require('../../Model/Client/UserModel')
 const bcrypt = require('bcryptjs')
-
+const jwt = require('jsonwebtoken')
 exports.signup = async (req, res) => {
 
     const { username, email, password } = req.body
@@ -10,14 +10,21 @@ exports.signup = async (req, res) => {
     try {
         if (!user) {
             const salt = await bcrypt.genSalt(10);
-            const hashpassword = await bcrypt.hash("password", salt)
+            const hashpassword = await bcrypt.hash(password, salt)
             user = UserModel({
                 username,
                 email,
                 password: hashpassword
             })
+
+            //assign jwt token
+            const token = jwt.sign({_id: user._id}, "secretkey123", {
+            expiresIn: "90d",
+            })
+
             await user.save()
-            res.status(200).json({ message: "User Registered Succesfully", success: true })
+        
+            res.status(200).json({ message: "User Registered Succesfully", success: true, token})
         }
         else {
             res.status(400).json({ message: "Email already registered", success: false })
@@ -31,13 +38,16 @@ exports.login = async (req, res) => {
     const { email, password } = req.body
 
     let user = await UserModel.findOne({ email })
-    console.log(user);
+ 
     try {
         if (user) {
-            const passwordMatching = await bcrypt.compare("password", user.password)
-
+            const passwordMatching = await bcrypt.compare(password, user.password);
+                console.log(passwordMatching);
             if (passwordMatching) {
-                res.status(200).json({ message: "Login Successfull", user})
+                const token = jwt.sign({_id: user._id}, "secretkey123", {
+                    expiresIn: "90d",
+                    })
+                res.status(200).json({ message: "Login Successfull", token, user})
             } 
             else {
                return res.status(400).json({ message: "Invalid Password" })
