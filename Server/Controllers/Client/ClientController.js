@@ -17,11 +17,6 @@ exports.signup = async (req, res) => {
                 password: hashpassword
             })
 
-            //assign jwt token
-            const token = jwt.sign({_id: user._id}, "secretkey123", {
-            expiresIn: "90d",
-            })
-
             await user.save()
         
             res.status(200).json({ message: "User Registered Succesfully", success: true, token})

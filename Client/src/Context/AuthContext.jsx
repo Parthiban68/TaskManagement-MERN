@@ -3,8 +3,8 @@ import React, { createContext, useContext, useEffect, useState } from 'react'
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [token, setToken]= useState(null);
-    const [userData, setUserData] = useState(null);
+    const [token, setToken]= useState("");
+    const [userData, setUserData] = useState("");
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const storeData = JSON.parse(localStorage.getItem('user_data'));
 
