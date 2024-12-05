@@ -6,7 +6,7 @@ import { IoAddCircleOutline } from "react-icons/io5";
 import { useState } from 'react';
 import { FaCheckDouble } from "react-icons/fa6";
 
-const Cards = ( {home} ) => {
+const Cards = ( {home, setInputDiv} ) => {
     const data = [
         {
           "title": "Building a Responsive Sidebar",
@@ -46,10 +46,10 @@ const Cards = ( {home} ) => {
           </div>
         ))}
         {home==="true" && (
-        <div className='flex flex-col bg-gold justify-center items-center rounded-sm p-4 hover:scale-105 hover:cursor-pointer transition-all duration-300'>
+        <button onClick={() => setInputDiv("fixed") } className='flex flex-col bg-gold justify-center items-center rounded-sm p-4 hover:scale-105 hover:cursor-pointer transition-all duration-300'>
         <IoAddCircleOutline className='text-5xl'/>
           <h2 className='text-2xl font-mono mt-2'>Add Task</h2>
-        </div>
+        </button>
         )}
     </div>
   )
