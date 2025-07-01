@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npx nodemon app.js",
+    "prod-server" : "pm2 start app.js",
+    "stop-server" : "pm2 stop app.js"
   },
-  "keywords": [],
-  "author": "",
+ "author": "Parthiban",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -18,6 +19,8 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.4.3",
     "nodemailer": "^6.9.14",
+    "nodemon": "^3.1.10",
+    "pm2": "^6.0.8",
     "uuid": "^10.0.0"
   }
 }

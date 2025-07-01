@@ -6,7 +6,7 @@ const db = () => {
     
     try {
         mongoose.connection.on('connected', () => {
-            console.log("server conneted");
+            console.log("DataBase conneted");
         })
     }
     catch (error) {

@@ -1,7 +1,7 @@
 const express = require("express");
 const db = require('./Config/db')
-const client = require('./Routes/Client/ClientRoutes')
-require('dotenv').config()
+const mainRouter = require('./Connection/Connect')
+require('dotenv').config({ path: './.env.development' })
 const bodyparser = require('body-parser')
 const cors = require('cors')
 const app = express();
@@ -10,14 +10,8 @@ app.use(cors())
 app.use(bodyparser.json())
 db()
 
-//client route conneciton
-app.use('/user', client)
-
-//testing purpose
-app.get('/', (req, res) => {
-    res.status(200).json({ mesage: "home page" })
-})
-
+//main route conneciton
+app.use('/api', mainRouter)
 
 app.listen(process.env.port, () => {
     try {
