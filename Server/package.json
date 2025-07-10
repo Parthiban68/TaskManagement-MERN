@@ -3,19 +3,25 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "bin": {
+    "env-crypto": "./bin/cli.js"
+  },
   "scripts": {
     "start": "npx nodemon app.js",
-    "prod-server" : "pm2 start app.js",
-    "stop-server" : "pm2 stop app.js"
+    "prod-server": "pm2 start app.js",
+    "stop-server": "pm2 stop app.js"
   },
- "author": "Parthiban",
+  "author": "Parthiban",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
+    "commander": "^14.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "fs-extra": "^11.3.0",
+    "inquirer": "^12.7.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.4.3",
     "nodemailer": "^6.9.14",
